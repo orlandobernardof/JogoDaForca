@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 import java.util.*;
 import javax.swing.*;
 import modelo.*;
+import DAO.*;
 
 
 public class Jogo {
@@ -51,6 +52,9 @@ public class Jogo {
 		String pergunta;
 		String letrastr;
 		
+		boolean salvar = true;
+		String[] dadosDoJogo = new String[6];
+		
 		char letra;
 		//int tentativas = 6;
 		//ArrayList<String> lista = new ArrayList<String>();
@@ -58,9 +62,7 @@ public class Jogo {
 		/*
 		
 		*/
-		
-		
-		
+				
 		do
 		{
 			//System.out.println("PALAVRA: "); //lista.add("PALAVRA: ");
@@ -71,10 +73,24 @@ public class Jogo {
 			letrastr = JOptionPane.showInputDialog(pergunta);
 			if (letrastr == null) 
 				{
-					jlabel.setText("nenhuma");
-					saida.setText("");
-					erros = 0;
-					boneco.repaint();
+					if (salvar)
+					{
+						dadosDoJogo[0] = Boolean.toString(f.isEnforcado());
+						dadosDoJogo[1] = Integer.toString(f.getItens());
+						dadosDoJogo[2] = letesc.getLetras();
+						dadosDoJogo[3] = pal.getTexto();
+						dadosDoJogo[4] = pal.getTexto_descoberto();
+						dadosDoJogo[5] = Boolean.toString(pal.isGanhou());
+						
+						JogoDAO jdao = new JogoDAO();
+						jdao.salvarJogo(dadosDoJogo);						
+					}
+					else {
+						jlabel.setText("nenhuma");
+						saida.setText("");
+						erros = 0;
+						boneco.repaint();
+					}
 					break;
 				}
 			letrastr = letrastr.toUpperCase();

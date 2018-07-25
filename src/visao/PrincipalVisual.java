@@ -140,29 +140,7 @@ public class PrincipalVisual {
 		btnSalvarJogo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				String folder;		
-				JFileChooser chooser = new JFileChooser();
-				chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-				chooser.setDialogTitle("Escolha o arquivo:");
-				int ret = chooser.showOpenDialog(null);
-				if (ret==JFileChooser.APPROVE_OPTION){
-					folder= chooser.getSelectedFile().getAbsolutePath();
-					//System.out.println("Arquivo escolhido: " + folder);						
-				try 
-				{
-					OutputStream os = new FileOutputStream(folder);// + "/saida.txt");
-					OutputStreamWriter osw = new OutputStreamWriter(os);
-					BufferedWriter bw = new BufferedWriter(osw);
-					
-					bw.write("jogo salvo");				
-					bw.close();
-				}
-				catch (IOException x)
-				{
-					JOptionPane.showMessageDialog(null, "Erro \n" + x);
-				}
-								
-				}	
+																
 				
 			}
 		});
